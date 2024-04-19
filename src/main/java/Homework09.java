@@ -7,7 +7,7 @@
  *
  * @author MoaathAlrajab
  */
-public class Homework09 {
+
     
     // ToDo 01:  Write an algorithm to solve the following problem
     /*
@@ -29,6 +29,41 @@ We can see that 28 is the first triangle number to have over five divisors.
 What is the value of the first triangle number to have over one hundred divisors?
     
     */
-    
-    
-}
+    public class Homework09 {
+        public static void main(String[] args) {
+            int index = 1;
+            int divisorCount = 0;
+
+            while (true) {
+                // Calculate the triangle number
+                int triangleNumber = index * (index + 1) / 2;
+                divisorCount = countDivisors(triangleNumber);
+
+                // Check if the number of divisor is more than 100
+                if (divisorCount > 100) {
+                    System.out.println("First triangle number to have more then 100 divisors is: " + triangleNumber);
+                    break;
+                }
+
+                index++;
+            }
+        }
+
+        // Function to count divisors of a given number
+        public static int countDivisors(int number) {
+            int count = 0;
+            int sqrt = (int) Math.sqrt(number);
+
+            for (int i = 1; i <= sqrt; i++) {
+                if (number % i == 0) {
+
+                    count += 2;
+                    if (i == number / i) {
+                        count--;
+                    }
+                }
+            }
+
+            return count;
+        }
+    }
